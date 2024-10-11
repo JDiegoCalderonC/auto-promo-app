@@ -15,11 +15,13 @@ Este proyecto es una aplicación Next.js para una promoción de una compañía d
    cd auto-promo-app
 
 2. Construye las imágenes de Docker:
-
+    
+    ```bash
     docker-compose build
 
 3. Levanta los contenedores:
 
+    ```bash
     docker-compose up
 
 La aplicación estará disponible en http://localhost:3000.
