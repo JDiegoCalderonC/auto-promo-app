@@ -3,13 +3,17 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import logosf from '../../public/images/logosf.png';
-
-
+import { getDepartments } from "../../utils/geonames";
+import { getCities } from "../../utils/geonames";
 
 export default function Home() {
   
   const [codigoGenerado, setCodigoGenerado] = useState("");
   const [city, setCity] = useState('Bogotá');
+
+  const [departments, setDepartments] = useState([]);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [cities, setCities] = useState([]);
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -50,7 +54,42 @@ export default function Home() {
 
 
   const handleChange = (e) => {
+
     const { name, value, type, checked } = e.target;
+    console.log(e)
+
+    // Validar solo caracteres alfabéticos para los campos "nombre" y "apellido"
+    if ((name === "nombre" || name === "apellido") && !/^[a-zA-Z]*$/.test(value)) {
+      alert(`El ${name} debe contener solo letras.`);
+      return;
+    }
+
+    // Validar solo caracteres válidos para el campo "email"
+    if (name === "email" && !/^[a-zA-Z0-9@.]*$/.test(value)) {
+      alert(`El correo electrónico debe contener solo letras, números y @.`);
+
+      return;
+    }
+
+    // Validar solo números para el campo "cedula"
+    if (name === "cedula" && !/^\d*$/.test(value)) {
+      alert("La cédula debe contener solo números.");
+      return;
+    }
+
+    // Si el campo es "departamento", actualiza las ciudades
+    if (name === "departamento") {
+      const selectedDepartment = departments.find(department => department.name === value);
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+        ciudad: "", // Resetea la ciudad al cambiar el departamento
+      }));
+      setSelectedDepartment(selectedDepartment.id);
+      // console.log("key",key)
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -93,6 +132,31 @@ export default function Home() {
   }, []);
 
 
+  useEffect(() => {
+
+    const fetchDepartmentData = async () => {
+
+      const departments = await getDepartments();
+      setDepartments(departments);
+
+    };
+
+    fetchDepartmentData();
+  }, []);
+
+  
+  useEffect(() => {
+
+    const fetchCitiesData = async () => {
+
+      const cities = await getCities(selectedDepartment);
+      setCities(cities);
+    };
+
+    fetchCitiesData();
+  }, [selectedDepartment]);
+
+
   return (
     <div className="w-full h-full">
       
@@ -103,7 +167,13 @@ export default function Home() {
           alt="Logo AutoPromo"
           width={70} 
           height={70}
+          className="ml-3 p-1"
         />
+
+        <div className="flex items-center justify-center">
+          <div className="h-12 border-r border-white mx-1"></div>
+        </div>
+
         <h1 className="text-4xl text-white font-bold font-serif ml-3 mt-2">AutoPromo</h1>
 
         <div className="relative ml-2">
@@ -121,7 +191,7 @@ export default function Home() {
       </nav>
 
 
-      <div className="h-1/10 border border-neutral-300 py-2 mb-4 flex items-center justify-between">
+      <div className="h-20 border border-neutral-300 py-2 mb-4 flex items-center justify-between">
         <button onClick={handlePrev} className="px-3 py-2 ml-5 bg-yellow-400 hover:bg-yellow-200 rounded-lg">
           ←
         </button>
@@ -137,7 +207,7 @@ export default function Home() {
                   alt={`Marca ${index + 1}`}
                   width={70} 
                   height={70}
-                  className=""
+                  className="object-cover"
                 />
               </div>
             ))}
@@ -150,7 +220,7 @@ export default function Home() {
 
 
       {!codigoGenerado ? (
-        <div className="flex justify-center h-3/5">
+        <div className="flex justify-center h-3/5 py-2">
 
           <form
             onSubmit={handleSubmit}
@@ -214,9 +284,9 @@ export default function Home() {
                 className="w-1/2 border border-gray-400 rounded-lg p-1"
               >
                 <option value="">Selecciona</option>
-                <option value="Cundinamarca">Cundinamarca</option>
-                <option value="Antioquia">Antioquia</option>
-                {/* */}
+                {departments.map(department => (
+                  <option key={department.id} value={department.name} > {department.name} </option>
+                ))}
               </select>
             </div>
 
@@ -230,9 +300,9 @@ export default function Home() {
                 className="w-1/2 border border-gray-400 rounded-lg p-1"
               >
                 <option value="">Selecciona</option>
-                <option value="Bogotá">Bogotá</option>
-                <option value="Medellín">Medellín</option>
-                {/*  ciudades según el departamento */}
+                {cities?.map(city => (
+                  <option key={city.id} value={city.name} > {city.name} </option>
+                ))}
               </select>
             </div>
 
