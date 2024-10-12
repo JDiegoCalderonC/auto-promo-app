@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 export const metadata = {
-  title: "Auto Promo Bogotá",
+  title: "AutoPromo Bogotá",
   description: "Regístrate para tener la oportunidad de ganar en el sorteo exclusivo de Auto Promo Bogotá.",
 };
 
