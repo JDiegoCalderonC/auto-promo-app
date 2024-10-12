@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from '../../public/images/logo.jpg';
 
 
 export default function Home() {
+
+  
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -16,6 +18,7 @@ export default function Home() {
     email: "",
     autorizado: false,
   });
+
   const [codigoGenerado, setCodigoGenerado] = useState("");
 
   const handleChange = (e) => {
@@ -44,6 +47,16 @@ export default function Home() {
     });
   };
 
+  const [city, setCity] = useState('Bogotá');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCity((prev) => (prev === 'Bogotá' ? 'Cundinamarca' : 'Bogotá'));
+    }, 2000); // Cambia cada 2 segundos
+
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+  }, []);
+
   return (
     <div className="w-full h-full">
       
@@ -55,8 +68,19 @@ export default function Home() {
           width={70} 
           height={70}
         />
-        <h1 className="text-4xl text-indigo-700 font-bold font-serif ml-3">AutoPromo</h1>
-        <h1 className="text-base text-black font-bold font-serif ml-1 mt-2 bg-yellow-400 px-2">Bogotá</h1>
+        <h1 className="text-4xl text-indigo-700 font-bold font-serif ml-3 mt-2">AutoPromo</h1>
+
+        <div className="relative ml-1">
+          {/* Texto de Bogotá */}
+          <h1 className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${city === 'Bogotá' ? 'opacity-100' : 'opacity-0'}`}>
+            Bogotá
+          </h1>
+          
+          {/* Texto de Cundinamarca */}
+          <h1 className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${city === 'Cundinamarca' ? 'opacity-100' : 'opacity-0'}`}>
+            Cundinamarca
+          </h1>
+        </div>
 
       </nav>
 
@@ -67,19 +91,19 @@ export default function Home() {
 
           <form
             onSubmit={handleSubmit}
-            className="w-3/5 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-lg"
+            className="w-3/5 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-2xl bg-formColor"
           >
 
-            <h1 className="text-2xl font-semibold text-center mt-2">
-              Participa en Nuestro Concurso!
+            <h1 className="text-2xl font-semibold text-center mt-2 text-secFormColor">
+              Registrate para participar en Nuestro Concurso!
             </h1>
 
             <div className="flex items-center justify-center">
-              <div className="w-2/3 border-b border-neutral-600 mb-2"></div>
+              <div className="w-2/3 border-b border-white mb-2"></div>
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Nombre*</label>
+              <label className="block w-1/2 mb-1 text-white">Nombre*</label>
               <input
                 type="text"
                 name="nombre"
@@ -92,7 +116,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Apellido*</label>
+              <label className="block w-1/2 mb-1 text-white">Apellido*</label>
               <input
                 type="text"
                 name="apellido"
@@ -105,7 +129,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Cédula*</label>
+              <label className="block w-1/2 mb-1 text-white">Cédula*</label>
               <input
                 type="number"
                 name="cedula"
@@ -118,7 +142,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Departamento*</label>
+              <label className="block w-1/2 mb-1 text-white">Departamento*</label>
               <select
                 name="departamento"
                 value={formData.departamento}
@@ -134,7 +158,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Ciudad*</label>
+              <label className="block w-1/2 mb-1 text-white">Ciudad*</label>
               <select
                 name="ciudad"
                 value={formData.ciudad}
@@ -150,7 +174,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Celular*</label>
+              <label className="block w-1/2 mb-1 text-white">Celular*</label>
               <input
                 type="number"
                 name="celular"
@@ -163,7 +187,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-center">
-              <label className="block w-1/2 mb-1">Correo Electrónico*</label>
+              <label className="block w-1/2 mb-1 text-white">Correo Electrónico*</label>
               <input
                 type="email"
                 name="email"
@@ -184,8 +208,8 @@ export default function Home() {
                 required
                 className="w-5 h-5 mr-4"
               />
-              <label className="max-w-3xl">
-                Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales.
+              <label className="max-w-3xl text-white mt-2">
+                Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la <a href="https://www.minambiente.gov.co/politica-de-proteccion-de-datos-personales/" target="_blank" className="text-secFormColor">política de protección de datos personales.</a>
               </label>
             </div>
 
