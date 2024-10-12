@@ -207,7 +207,7 @@ export default function Home() {
                   alt={`Marca ${index + 1}`}
                   width={70} 
                   height={70}
-                  className="object-cover"
+                  className="object-cover p-7"
                 />
               </div>
             ))}
