@@ -16,6 +16,11 @@ module.exports = {
       height: {
         '1/10': '10%',
       },
+      screens: {
+        '1.5xl': '1400px',
+        '3xl': '1920px',
+        '4xl': '2500px',
+      },
     },
   },
   plugins: [],

@@ -21,5 +21,5 @@ body {
 
 .object-cover {
   width: auto;
-  height: auto; /* O puedes cambiar esto a 100% si deseas que la imagen se ajuste a su contenedor */
+  height: auto;
 }
