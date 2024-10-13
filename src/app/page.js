@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getDepartments } from "../../utils/geonames";
-import { getCities } from "../../utils/geonames";
+import { getDepartments, getCities } from "../../utils/geonames";
 import Swal from "sweetalert2";
 
 import Navbar from "@/components/Navbar";
@@ -28,6 +27,12 @@ export default function Home() {
     email: "",
     autorizado: false,
   });
+
+  const images = [
+    "/wallpaper1.jpg",
+    "/wallpaper2.jpg",
+    "/wallpaper3.jpg"
+  ];
 
   const OpenModal = () => {
     setIsModalOpen(true);
@@ -132,16 +137,33 @@ export default function Home() {
     fetchCitiesData();
   }, [selectedDepartment]);
 
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Cambia cada 5 segundos
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full" >
+
       <Navbar />
 
       <Brands />
 
-      <div className="flex justify-center h-3/5 py-2">
+      <div 
+        className="flex justify-center h-3/5 py-8 bg-cover bg-center" 
+        style={{ 
+          backgroundImage: `url(/images/${images[currentImageIndex]})`,
+        }}
+      >
         <form
           onSubmit={handleSubmit}
-          className="w-3/5 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-2xl bg-formColor"
+          className="w-1/2 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-2xl bg-formColor"
         >
           <h1 className="text-2xl font-semibold text-center mt-2 text-secFormColor">
             Registrate para participar en Nuestro Concurso!
@@ -292,9 +314,8 @@ export default function Home() {
 
       <Footer />
 
-      <p className="font-bold font-serif text-end bg-gray-800 text-white pb-2 pr-4">
-        {" "}
-        © 2024 Todos los derechos reservados{" "}
+      <p className="font-bold font-serif text-end bg-gray-800 text-white pb-2 pr-4 -mt-6">
+        © 2024 Todos los derechos reservados
       </p>
 
       {isModalOpen && (

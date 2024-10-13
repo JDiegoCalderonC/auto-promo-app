@@ -41,7 +41,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <div className="h-20 border border-neutral-300 py-2 mb-4 flex items-center justify-between">
+    <div className="h-20 border border-neutral-300 py-2 flex items-center justify-between">
       <button
         onClick={handlePrev}
         className="px-3 py-2 ml-5 bg-yellow-400 hover:bg-yellow-200 rounded-lg"

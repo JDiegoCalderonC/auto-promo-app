@@ -15,7 +15,7 @@ const Footer = () => {
   return (
 
 
-    <footer className="h-1/3 flex items-start bg-gray-800 text-white p-4">
+    <footer className="h-1/3 flex items-start bg-gray-800 text-white pt-4">
         
       <div className="w-1/3">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
@@ -44,7 +44,7 @@ const Footer = () => {
         <p className="font-bold text-secFormColor mt-3">
           Horarios de atención:
         </p>
-        <p className="mb-3">08:00 a. m. - 04:00 p. m.</p>
+        <p className="mb-0">08:00 a. m. - 04:00 p. m.</p>
       </div>
 
       <div className="w-1/3 space-y-2">
