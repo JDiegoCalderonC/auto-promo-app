@@ -73,7 +73,7 @@ const Navbar = () => {
             onClick={toggleVehicles}
             className="mr-4 hover:text-yellow-400"
           >
-            Vehículos{" "}
+            Vehículos
             <FontAwesomeIcon
               icon={faChevronDown}
               className="ml-1 h-4 w-4 inline"
@@ -130,7 +130,7 @@ const Navbar = () => {
             onClick={toggleServices}
             className="mr-4 hover:text-yellow-400 "
           >
-            Servicios{" "}
+            Servicios
             <FontAwesomeIcon
               icon={faChevronDown}
               className="ml-1 h-4 w-4 inline"

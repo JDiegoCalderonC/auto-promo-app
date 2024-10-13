@@ -37,7 +37,7 @@ const PrizeCode = ({ closeModal, code }) => {
           <p className="text-3xl font-bold ">{code}</p>
         </div>
 
-        <p className="max-w-lg">
+        <p className="max-w-lg text-base text-justify ">
           Guarda tu código con el que podrás participar en el sorteo del carro
           que se realizará en las proximas semanas.
         </p>
@@ -91,8 +91,7 @@ const PrizeCode = ({ closeModal, code }) => {
 
         <div className="flex justify-between space-x-3 mt-3">
           <p className="font-sans flex items-end justify-start -mb-6 text-sm">
-            Codigo generado: {formattedDate} /{" "}
-            {currentDateTime.toLocaleTimeString()}
+            Codigo generado: {formattedDate} / {currentDateTime.toLocaleTimeString()}
           </p>
 
           <button

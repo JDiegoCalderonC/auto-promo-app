@@ -78,7 +78,7 @@ const Footer = () => {
         </a>
         <p className="text-white text-center"> Linea de atención nacional </p>
         <p className="text-white text-center" style={{ marginTop: "0px" }}>
-          01 8000 423 818{" "}
+          01 8000 8000 8000
         </p>
       </div>
 

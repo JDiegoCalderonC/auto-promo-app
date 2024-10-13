@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getDepartments, getCities } from "../../utils/geonames";
+import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 
+import { getDepartments, getCities } from "../../utils/geonames";
 import Navbar from "@/components/Navbar";
 import PrizeCode from "@/components/PrizeCode";
 import Brands from "@/components/Brands";
@@ -39,9 +40,9 @@ export default function Home() {
   };
 
   const generateCode = () => {
-    // Lógica para generar un código alfanumérico
-    const codigo = Math.random().toString(36).substr(2, 8).toUpperCase(); // Código aleatorio
-    setCode(codigo);
+    const codigo = uuidv4(); // Genera un UUID
+    const codigoCorto = codigo.replace(/-/g, '').substr(0, 12).toUpperCase();
+    setCode(codigoCorto);
   };
 
   const handleChange = (e) => {
@@ -224,8 +225,7 @@ export default function Home() {
               <option value="">Selecciona</option>
               {departments.map((department) => (
                 <option key={department.id} value={department.name}>
-                  {" "}
-                  {department.name}{" "}
+                  {department.name}
                 </option>
               ))}
             </select>
@@ -243,8 +243,7 @@ export default function Home() {
               <option value="">Selecciona</option>
               {cities?.map((city) => (
                 <option key={city.id} value={city.name}>
-                  {" "}
-                  {city.name}{" "}
+                  {city.name}
                 </option>
               ))}
             </select>
@@ -289,7 +288,7 @@ export default function Home() {
             />
             <label className="max-w-3xl text-white mt-2">
               Autorizo el tratamiento de mis datos de acuerdo con la finalidad
-              establecida en la{" "}
+              establecida en la
               <a
                 href="https://www.minambiente.gov.co/politica-de-proteccion-de-datos-personales/"
                 target="_blank"
