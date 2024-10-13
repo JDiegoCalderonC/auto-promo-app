@@ -13,20 +13,20 @@ const Navbar = () => {
 
   const toggleVehicles = () => {
     setShowVehicles(!showVehicles);
-    setShowServices(false); // Cierra el otro menú si está abierto
+    setShowServices(false);
   };
 
   const toggleServices = () => {
     setShowServices(!showServices);
-    setShowVehicles(false); // Cierra el otro menú si está abierto
+    setShowVehicles(false);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCity((prev) => (prev === "Bogotá" ? "Colombia" : "Bogotá"));
-    }, 2000); // Cambia cada 2 segundos
+    }, 2000);
 
-    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -48,7 +48,7 @@ const Navbar = () => {
       </h1>
 
       <div className="relative ml-2">
-        {/* Texto de Bogotá */}
+
         <h1
           className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${
             city === "Bogotá" ? "opacity-100" : "opacity-0"
@@ -57,7 +57,6 @@ const Navbar = () => {
           Bogotá
         </h1>
 
-        {/* Texto de Colombia */}
         <h1
           className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${
             city === "Colombia" ? "opacity-100" : "opacity-0"

@@ -1,6 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -13,7 +11,6 @@ const Footer = () => {
 
 
   return (
-
 
     <footer className="sm:h-1/3 md:h-1/3 lg:h-1/3 xl:h-1/3 2xl:h-1/3 3xl:h-1/3 4xl:h-96 flex items-start bg-gray-800 text-white pt-4">
         

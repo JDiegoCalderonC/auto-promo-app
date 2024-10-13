@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GEO_NAMES_USERNAME = "jdiegocalderon"; // Reemplaza esto con tu nombre de usuario de GeoNames
+const GEO_NAMES_USERNAME = "jdiegocalderon";
 
 export const getDepartments = async () => {
   try {
@@ -8,10 +8,6 @@ export const getDepartments = async () => {
     const departmentsResponse = await axios.get(
       `http://api.geonames.org/childrenJSON?geonameId=3686110&username=${GEO_NAMES_USERNAME}`
     );
-    console.log(
-      "Response from GeoNames for departments:",
-      departmentsResponse.data
-    ); // Agregar esta línea
     const departments = departmentsResponse.data.geonames.map((department) => ({
       name: department.name,
       id: department.geonameId,
@@ -30,7 +26,6 @@ export const getCities = async (id) => {
     const citiesResponse = await axios.get(
       `http://api.geonames.org/childrenJSON?geonameId=${id}&username=${GEO_NAMES_USERNAME}`
     );
-    console.log("Response from GeoNames for cities:", citiesResponse.data); // Agregar esta línea
     const cities = citiesResponse.data.geonames?.map((city) => ({
       name: city.name,
       id: city.geonameId,

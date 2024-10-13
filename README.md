@@ -25,3 +25,16 @@ Este proyecto es una aplicación Next.js para una promoción de una compañía d
     docker-compose up
 
 La aplicación estará disponible en http://localhost:3000.
+
+## Información de la aplicación
+
+- **Estilos:** La aplicación utiliza **Tailwind CSS** para la estilización.
+- **Datos Geográficos:** Los departamentos y ciudades se obtienen mediante la **API de Geonames**, consumida a través de **Axios**.
+- **Código del Sorteo:** El código del sorteo se genera utilizando un **UUID**.
+- **Alertas:** Las alertas se implementan con **SweetAlert2**.
+- **Iconos:** Los iconos provienen de **FontAwesome**.
+- **Carrusel de Imágenes:** El número de elementos en el carrusel de imágenes se ajusta dinámicamente según el ancho de la pantalla.
+
+## Autores
+
+**Juan Diego Calderón Carrillo**

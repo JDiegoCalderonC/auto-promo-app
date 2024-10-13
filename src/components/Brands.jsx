@@ -43,9 +43,9 @@ const Brands = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 2000); // Cambia cada 2 segundos
+    }, 2000);
 
-    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, []);
 
   return (

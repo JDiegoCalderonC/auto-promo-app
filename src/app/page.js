@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   const generateCode = () => {
-    const codigo = uuidv4(); // Genera un UUID
+    const codigo = uuidv4(); // Genera un codigo UUID
     const codigoCorto = codigo.replace(/-/g, '').substr(0, 12).toUpperCase();
     setCode(codigoCorto);
   };
@@ -73,7 +73,7 @@ export default function Home() {
       return;
     }
 
-    // Validar solo números para el campo "cedula"
+    // Validar solo números para el campo "cedula" y "celular"
     if ((name === "cedula" || name === "celular") && !/^\d*$/.test(value)) {
       Swal.fire({
         icon: "error",
@@ -106,11 +106,6 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormData((prev) => ({
-      ...prev,
-      code: code, // Asigna el valor del código
-    }));
-
     setFormData({
       nombre: "",
       apellido: "",
@@ -124,7 +119,6 @@ export default function Home() {
 
     generateCode();
     OpenModal();
-    console.log(formData);
   };
 
   useEffect(() => {
@@ -151,7 +145,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Cambia cada 5 segundos
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
