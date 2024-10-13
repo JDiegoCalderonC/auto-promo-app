@@ -9,9 +9,19 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
+/**
+ * Componente PrizeCode que muestra un modal con el código de sorteo.
+ * 
+ * @param {Object} props - Props del componente.
+ * @param {Function} props.closeModal - Función para cerrar el modal.
+ * @param {string} props.code - Código del sorteo.
+ * @returns {JSX.Element} - El modal con el código de sorteo y enlaces a redes sociales.
+ */
 const PrizeCode = ({ closeModal, code }) => {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  
+  const [currentDateTime, setCurrentDateTime] = useState(new Date()); // Estado para la fecha y hora actual
 
+  // Formatea la fecha en un formato legible
   const formattedDate = currentDateTime.toLocaleDateString("es-ES", {
     day: "numeric", // Número del día
     month: "long", // Nombre completo del mes
@@ -21,7 +31,6 @@ const PrizeCode = ({ closeModal, code }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="font-serif bg-white p-8 rounded-lg">
-
         <h3 className="text-indigo-500 font-bold text-4xl text-center">
           !Registro Completado!
         </h3>
@@ -39,12 +48,12 @@ const PrizeCode = ({ closeModal, code }) => {
             icon={faTicket}
             className="text-yellow-400 w-24 h-24 mr-4"
           />
-          <p className="text-3xl font-bold ">{code}</p>
+          <p className="text-3xl font-bold">{code}</p>
         </div>
 
         <p className="max-w-lg text-base text-justify ">
-         {fullname} Guarda tu código con el que podrás participar en el sorteo del carro
-          que se realizará en las proximas semanas.
+          Guarda tu código con el que podrás participar en el sorteo del carro
+          que se realizará en las próximas semanas.
         </p>
 
         <p className="font-bold text-center mt-6">
@@ -52,6 +61,7 @@ const PrizeCode = ({ closeModal, code }) => {
         </p>
 
         <div className="flex justify-center space-x-4 mt-2">
+          {/* Enlaces a redes sociales */}
           <a
             href="https://www.facebook.com"
             target="_blank"
@@ -96,13 +106,14 @@ const PrizeCode = ({ closeModal, code }) => {
 
         <div className="flex justify-between space-x-3 mt-3">
           <p className="font-sans flex items-end justify-start -mb-6 text-sm">
-            Codigo uuid generado: {formattedDate} / {currentDateTime.toLocaleTimeString()}
+            Código uuid generado: {formattedDate} / {currentDateTime.toLocaleTimeString()}
           </p>
 
+          {/* Botón para cerrar el modal */}
           <button
             type="button"
             onClick={closeModal}
-            className="w-20 h-8  bg-red-500 hover:bg-red-300 text-white text-base rounded-lg"
+            className="w-20 h-8 bg-red-500 hover:bg-red-300 text-white text-base rounded-lg"
           >
             Cerrar
           </button>

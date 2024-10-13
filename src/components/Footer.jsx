@@ -7,13 +7,15 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
+/**
+ * Componente Footer que muestra información de contacto y enlaces a redes sociales.
+ * 
+ * @returns {JSX.Element} - El pie de página con información de contacto y enlaces a redes sociales.
+ */
 const Footer = () => {
-
-
   return (
-
     <footer className="sm:h-1/3 md:h-1/3 lg:h-1/3 xl:h-1/3 2xl:h-1/3 3xl:h-1/3 4xl:h-96 flex items-start bg-gray-800 text-white pt-4">
-        
+      {/* Sección de información de ubicación y contacto */}
       <div className="w-1/3 ml-4">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
           Dónde estamos:
@@ -44,6 +46,7 @@ const Footer = () => {
         <p className="mb-0">08:00 a. m. - 04:00 p. m.</p>
       </div>
 
+      {/* Sección de canales de atención */}
       <div className="w-1/3 space-y-2">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
           Canales de atención:
@@ -55,7 +58,7 @@ const Footer = () => {
           rel="noopener noreferrer"
           className="block text-center"
         >
-          Asesoría en linea
+          Asesoría en línea
         </a>
         <a
           href="https://www.google.com/?hl=es"
@@ -73,18 +76,20 @@ const Footer = () => {
         >
           PQRSD
         </a>
-        <p className="text-white text-center"> Linea de atención nacional </p>
+        <p className="text-white text-center"> Línea de atención nacional </p>
         <p className="text-white text-center" style={{ marginTop: "0px" }}>
           01 8000 8000 8000
         </p>
       </div>
 
+      {/* Sección de redes sociales */}
       <div className="sm:w-2/5 md:w-1/3 lg:w-1/3 xl:w-1/3 2xl:w-1/3 3xl:w-1/3 4xl:w-1/3 h-full">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
           Redes Sociales
         </p>
 
         <div className="flex justify-center space-x-4 mt-6">
+          {/* Enlaces a redes sociales */}
           <a
             href="https://www.facebook.com"
             target="_blank"

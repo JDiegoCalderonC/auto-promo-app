@@ -1,26 +1,36 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import logosf from "../../public/images/logosf.png";
+import logosf from "../../public/images/logosf.png"; // Importa el logo de la aplicación
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Componente Navbar que muestra el menú de navegación principal de la aplicación.
+ * 
+ * @returns {JSX.Element} - El navbar con enlaces a vehículos y servicios.
+ */
 const Navbar = () => {
+  // Estado para mostrar/ocultar el menú de vehículos y servicios
   const [showVehicles, setShowVehicles] = useState(false);
   const [showServices, setShowServices] = useState(false);
 
+  // Estado para la ciudad que se muestra en el Navbar
   const [city, setCity] = useState("Bogotá");
 
+  // Función para alternar la visibilidad del menú de vehículos
   const toggleVehicles = () => {
     setShowVehicles(!showVehicles);
     setShowServices(false);
   };
 
+  // Función para alternar la visibilidad del menú de servicios
   const toggleServices = () => {
-    setShowServices(!showServices);
-    setShowVehicles(false);
+    setShowServices(!showServices); 
+    setShowVehicles(false); 
   };
 
+  // Efecto para alternar la ciudad cada 2 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCity((prev) => (prev === "Bogotá" ? "Colombia" : "Bogotá"));
@@ -31,6 +41,7 @@ const Navbar = () => {
 
   return (
     <nav className="h-1/10 p-1 flex items-center bg-black">
+      {/* Logo de la aplicación */}
       <Image
         src={logosf}
         alt="Logo AutoPromo"
@@ -43,12 +54,13 @@ const Navbar = () => {
         <div className="h-12 border-r border-white mx-1"></div>
       </div>
 
+      {/* Título de la aplicación */}
       <h1 className="sm:text-3xl md:text-4xl xl:text-4xl 2xl:text-4xl 3xl:text-4xl 4xl:text-4xl text-white font-bold font-serif ml-3 mt-2">
         AutoPromo
       </h1>
 
       <div className="relative ml-2">
-
+        {/* Lugar que cambia cada 2 segundos */}
         <h1
           className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${
             city === "Bogotá" ? "opacity-100" : "opacity-0"
@@ -67,6 +79,7 @@ const Navbar = () => {
       </div>
 
       <div className="text-white flex justify-end w-full">
+        {/* Menú de vehículos */}
         <div className="mr-4">
           <button
             onClick={toggleVehicles}
@@ -124,10 +137,11 @@ const Navbar = () => {
           )}
         </div>
 
+        {/* Menú de servicios */}
         <div className="mr-4">
           <button
             onClick={toggleServices}
-            className="mr-4 hover:text-yellow-400 "
+            className="mr-4 hover:text-yellow-400"
           >
             Servicios
             <FontAwesomeIcon

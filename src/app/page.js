@@ -4,20 +4,35 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
 
-import { getDepartments, getCities } from "../../utils/geonames";
+import { getDepartments, getCities } from "../../utils/geonames"; // Importación de funciones para obtener departamentos y ciudades
 import Navbar from "@/components/Navbar";
 import PrizeCode from "@/components/PrizeCode";
 import Brands from "@/components/Brands";
 import Footer from "@/components/Footer";
 
+
+/**
+ * Componente principal de la página de inicio.
+ * Permite a los usuarios registrarse para participar en un concurso.
+ */
+
 export default function Home() {
+
+  // Estado para controlar la apertura del modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Estado para almacenar el código generado
   const [code, setCode] = useState("");
+
+  // Estado para almacenar los departamentos y ciudades
   const [departments, setDepartments] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
 
+  // Estado para manejar el índice de la imagen actual
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -29,22 +44,26 @@ export default function Home() {
     autorizado: false,
   });
 
+  // Array de imágenes para el fondo
   const images = [
     "/wallpaper1.jpg",
     "/wallpaper2.jpg",
     "/wallpaper3.jpg"
   ];
 
+  // Abre el modal al registrarse.
   const OpenModal = () => {
     setIsModalOpen(true);
   };
 
+  //Genera un código UUID y lo convierte a un formato más corto.
   const generateCode = () => {
     const codigo = uuidv4(); // Genera un codigo UUID
     const codigoCorto = codigo.replace(/-/g, '').substr(0, 12).toUpperCase();
     setCode(codigoCorto);
   };
 
+  // Limpia los datos del formulario al registrarse.
   const clearForm = () => {
     setFormData({
       nombre: "",
@@ -58,7 +77,10 @@ export default function Home() {
     });
   };
 
-
+  /**
+   * Maneja los cambios en los campos del formulario.
+   * @param {Event} e - Evento de cambio del formulario
+   */
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -112,24 +134,31 @@ export default function Home() {
       return;
     }
 
+    // Actualiza el estado del formulario
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-
-
   };
+
+
+    /**
+   * Maneja el envío del formulario.
+   * @param {Event} e - Evento de envío del formulario
+   */
 
   const handleSubmit = (e) => {
-    e.preventDefault();
 
-    clearForm();
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
 
-    generateCode();
+    clearForm(); // Limpia el formulario
 
-    OpenModal();
+    generateCode(); // Genera un nuevo código
+
+    OpenModal(); // Abre el modal
   };
 
+  // Efecto para obtener los datos de los departamentos al cargar el componente
   useEffect(() => {
     const fetchDepartmentData = async () => {
       const departments = await getDepartments();
@@ -139,6 +168,8 @@ export default function Home() {
     fetchDepartmentData();
   }, []);
 
+
+  // Efecto para obtener las ciudades correspondientes al departamento seleccionado
   useEffect(() => {
     const fetchCitiesData = async () => {
       const cities = await getCities(selectedDepartment);
@@ -149,8 +180,7 @@ export default function Home() {
   }, [selectedDepartment]);
 
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  // Efecto para cambiar la imagen de fondo cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -162,14 +192,14 @@ export default function Home() {
   return (
     <div className="w-full h-full" >
 
-      <Navbar />
+    <Navbar /> {/* Componente de navegación */}
 
-      <Brands />
+    <Brands /> {/* Componente de marcas */}
 
       <div 
         className="flex justify-center h-3/5 py-8 bg-cover bg-center" 
         style={{ 
-          backgroundImage: `url(/images/${images[currentImageIndex]})`,
+          backgroundImage: `url(/images/${images[currentImageIndex]})`, // Establece laS imagenES de fondO
         }}
       >
         <form
@@ -184,6 +214,7 @@ export default function Home() {
             <div className="w-2/3 border-b border-white mb-2"></div>
           </div>
 
+           {/* Campos del formulario */}
           <div className="flex flex-col items-center">
             <label className="block w-1/2 mb-1 text-white">Nombre*</label>
             <input
@@ -321,12 +352,13 @@ export default function Home() {
         </form>
       </div>
 
-      <Footer />
+      <Footer /> {/* Componente de pie de página */}
 
       <p className="font-bold font-serif text-end bg-gray-800 text-white pb-2 pr-4 -mt-6">
         © 2024 Todos los derechos reservados
       </p>
-
+      
+      {/* Modal para mostrar el código de premio */}
       {isModalOpen && (
         <PrizeCode closeModal={() => setIsModalOpen(false)} code={code}/>
       )}
