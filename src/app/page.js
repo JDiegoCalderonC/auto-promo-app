@@ -8,10 +8,13 @@ import { getCities } from "../../utils/geonames";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import Swal from "sweetalert2";
+import PrizeCode from "@/components/PrizeCode";
 
 export default function Home() {
   
-  const [codigoGenerado, setCodigoGenerado] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [code, setCode] = useState("");
   const [city, setCity] = useState('Bogotá');
 
   const [departments, setDepartments] = useState([]);
@@ -44,7 +47,11 @@ export default function Home() {
     "/images/marca12.png",
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0); 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const OpenModal = () => {
+    setIsModalOpen(true);
+  };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? marcasDeCarros.length - 1 : prev - 1));
@@ -54,6 +61,12 @@ export default function Home() {
     setCurrentIndex((prev) => (prev === marcasDeCarros.length - 1 ? 0 : prev + 1));
   };
 
+  const generateCode = () => {
+    // Lógica para generar un código alfanumérico
+    const codigo = Math.random().toString(36).substr(2, 8).toUpperCase(); // Código aleatorio
+    setCode(codigo);
+
+   }
 
   const handleChange = (e) => {
 
@@ -104,11 +117,9 @@ export default function Home() {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
-    // Lógica para generar un código alfanumérico
-    const codigo = Math.random().toString(36).substr(2, 8).toUpperCase(); // Código aleatorio
-    setCodigoGenerado(codigo);
     setFormData({
       nombre: "",
       apellido: "",
@@ -119,6 +130,10 @@ export default function Home() {
       email: "",
       autorizado: false,
     });
+
+    generateCode();
+    OpenModal();
+
   };
 
 
@@ -227,7 +242,7 @@ export default function Home() {
       </div>
 
 
-      {!codigoGenerado ? (
+      
         <div className="flex justify-center h-3/5 py-2">
 
           <form
@@ -364,14 +379,6 @@ export default function Home() {
             </div>
           </form>
         </div>
-      ) : (
-        <div>
-          <h2>¡Registro Completado!</h2>
-          <p>
-            Tu código de participación es: <strong>{codigoGenerado}</strong>
-          </p>
-        </div>
-      )}
 
       <footer className="h-1/3 flex items-start bg-gray-800 text-white p-4">
         
@@ -439,6 +446,13 @@ export default function Home() {
 
       <p className="font-bold font-serif text-end bg-gray-800 text-white pb-2 pr-4"> © 2024 Todos los derechos reservados </p>
 
+
+      {isModalOpen && (
+        <PrizeCode
+          closeModal={() => setIsModalOpen(false)}
+          code={code}
+        />
+      )}
 
     </div>
   );
