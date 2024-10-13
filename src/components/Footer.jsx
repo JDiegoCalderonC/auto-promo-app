@@ -15,9 +15,9 @@ const Footer = () => {
   return (
 
 
-    <footer className="h-1/3 flex items-start bg-gray-800 text-white pt-4">
+    <footer className="sm:h-1/3 md:h-1/3 lg:h-1/3 xl:h-1/3 2xl:h-1/3 3xl:h-1/3 4xl:h-96 flex items-start bg-gray-800 text-white pt-4">
         
-      <div className="w-1/3">
+      <div className="w-1/3 ml-4">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
           Dónde estamos:
         </p>
@@ -82,7 +82,7 @@ const Footer = () => {
         </p>
       </div>
 
-      <div className="w-1/3 h-full">
+      <div className="sm:w-2/5 md:w-1/3 lg:w-1/3 xl:w-1/3 2xl:w-1/3 3xl:w-1/3 4xl:w-1/3 h-full">
         <p className="text-2xl text-center font-bold text-secFormColor my-2">
           Redes Sociales
         </p>

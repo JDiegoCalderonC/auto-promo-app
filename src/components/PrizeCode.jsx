@@ -91,7 +91,7 @@ const PrizeCode = ({ closeModal, code }) => {
 
         <div className="flex justify-between space-x-3 mt-3">
           <p className="font-sans flex items-end justify-start -mb-6 text-sm">
-            Codigo generado: {formattedDate} / {currentDateTime.toLocaleTimeString()}
+            Codigo uuid generado: {formattedDate} / {currentDateTime.toLocaleTimeString()}
           </p>
 
           <button

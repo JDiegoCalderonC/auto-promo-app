@@ -23,7 +23,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCity((prev) => (prev === "Bogotá" ? "Cundinamarca" : "Bogotá"));
+      setCity((prev) => (prev === "Bogotá" ? "Colombia" : "Bogotá"));
     }, 2000); // Cambia cada 2 segundos
 
     return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
@@ -43,7 +43,7 @@ const Navbar = () => {
         <div className="h-12 border-r border-white mx-1"></div>
       </div>
 
-      <h1 className="text-4xl text-white font-bold font-serif ml-3 mt-2">
+      <h1 className="sm:text-3xl md:text-4xl xl:text-4xl 2xl:text-4xl 3xl:text-4xl 4xl:text-4xl text-white font-bold font-serif ml-3 mt-2">
         AutoPromo
       </h1>
 
@@ -57,13 +57,13 @@ const Navbar = () => {
           Bogotá
         </h1>
 
-        {/* Texto de Cundinamarca */}
+        {/* Texto de Colombia */}
         <h1
           className={`absolute text-sm text-black font-bold font-serif bg-yellow-400 px-2 transition-opacity duration-1000 ${
-            city === "Cundinamarca" ? "opacity-100" : "opacity-0"
+            city === "Colombia" ? "opacity-100" : "opacity-0"
           }`}
         >
-          Cundinamarca
+          Colombia
         </h1>
       </div>
 

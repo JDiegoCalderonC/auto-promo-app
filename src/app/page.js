@@ -47,20 +47,21 @@ export default function Home() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    console.log(e);
 
     // Validar solo caracteres alfabéticos para los campos "nombre" y "apellido"
     if (
       (name === "nombre" || name === "apellido") &&
-      !/^[a-zA-Z]*$/.test(value)
+      !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/.test(value)
     ) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: `El ${name} debe contener solo letras.`,
+        text: `El ${name} solo debe contener letras.`,
       });
       return;
-    }
+    } else if ((name === "nombre" || name === "apellido") && /\s{2,}/.test(value)) {
+    return;
+  }
 
     // Validar solo caracteres válidos para el campo "email"
     if (name === "email" && !/^[a-zA-Z0-9@.]*$/.test(value)) {
@@ -105,6 +106,11 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setFormData((prev) => ({
+      ...prev,
+      code: code, // Asigna el valor del código
+    }));
+
     setFormData({
       nombre: "",
       apellido: "",
@@ -118,6 +124,7 @@ export default function Home() {
 
     generateCode();
     OpenModal();
+    console.log(formData);
   };
 
   useEffect(() => {
@@ -164,7 +171,7 @@ export default function Home() {
       >
         <form
           onSubmit={handleSubmit}
-          className="w-1/2 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-2xl bg-formColor"
+          className="sm:w-2/3 md:w-2/3 lg:w-2/3 xl:w-3/5 2xl:w-1/2 3xl:w-1/2 4xl:w-1/2 h-full text-lg p-5 space-y-4 border border-neutral-300 rounded-2xl bg-formColor"
         >
           <h1 className="text-2xl font-semibold text-center mt-2 text-secFormColor">
             Registrate para participar en Nuestro Concurso!

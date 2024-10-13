@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useMedia } from 'use-media';
 
 const Brands = () => {
   const marcasDeCarros = [
@@ -19,6 +20,13 @@ const Brands = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const isShortScreen = useMedia({ maxWidth: '960px' });
+  const isSmallScreen = useMedia({ maxWidth: '1140px' });
+  const isMediumScreen = useMedia({ maxWidth: '1280px' });
+  const isLargeScreen = useMedia({ maxWidth: '1460px' });
+  const isBigScreen = useMedia({ maxWidth: '1800px' });
+
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -52,7 +60,7 @@ const Brands = () => {
       <div className="flex justify-center space-x-10">
         {marcasDeCarros
           .concat(marcasDeCarros) // Duplica el array para el comportamiento cíclico
-          .slice(currentIndex, currentIndex + 10) // Muestra 10 elementos a partir del índice actual
+          .slice(currentIndex, currentIndex + (isShortScreen ? 3 : isSmallScreen ? 5 : isMediumScreen ? 6 : isLargeScreen ? 7 : isBigScreen ? 8 : 10)) // Muestra 10 elementos a partir del índice actual
           .map((marca, index) => (
             <div
               key={index}
