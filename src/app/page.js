@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import logosf from '../../public/images/logosf.png';
 import { getDepartments } from "../../utils/geonames";
 import { getCities } from "../../utils/geonames";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Swal from "sweetalert2";
 
 export default function Home() {
   
@@ -39,7 +42,6 @@ export default function Home() {
     "/images/marca10.png",
     "/images/marca11.png",
     "/images/marca12.png",
-    // 
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0); 
@@ -60,20 +62,25 @@ export default function Home() {
 
     // Validar solo caracteres alfabéticos para los campos "nombre" y "apellido"
     if ((name === "nombre" || name === "apellido") && !/^[a-zA-Z]*$/.test(value)) {
-      alert(`El ${name} debe contener solo letras.`);
+      Swal.fire({
+        icon: "error", title: "Oops...", text: `El ${name} debe contener solo letras.`,
+      });
       return;
     }
 
     // Validar solo caracteres válidos para el campo "email"
     if (name === "email" && !/^[a-zA-Z0-9@.]*$/.test(value)) {
-      alert(`El correo electrónico debe contener solo letras, números y @.`);
-
+      Swal.fire({
+        icon: "error", title: "Oops...", text: `El correo electrónico debe contener solo letras, números y @.`,
+      });
       return;
     }
 
     // Validar solo números para el campo "cedula"
     if (name === "cedula" && !/^\d*$/.test(value)) {
-      alert("La cédula debe contener solo números.");
+      Swal.fire({
+        icon: "error", title: "Oops...", text: "La cédula debe contener solo números.",
+      });
       return;
     }
 
@@ -207,7 +214,8 @@ export default function Home() {
                   alt={`Marca ${index + 1}`}
                   width={70} 
                   height={70}
-                  className="object-cover p-7"
+                  className="object-cover"
+                  style={{ padding: '30px' }}
                 />
               </div>
             ))}
@@ -342,7 +350,7 @@ export default function Home() {
                 className="w-5 h-5 mr-4"
               />
               <label className="max-w-3xl text-white mt-2">
-                Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la <a href="https://www.minambiente.gov.co/politica-de-proteccion-de-datos-personales/" target="_blank" className="text-secFormColor">política de protección de datos personales.</a>
+                Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la <a href="https://www.minambiente.gov.co/politica-de-proteccion-de-datos-personales/" target="_blank" rel="noopener noreferrer" className="text-secFormColor">política de protección de datos personales.</a>
               </label>
             </div>
 
@@ -365,20 +373,72 @@ export default function Home() {
         </div>
       )}
 
-      <footer className="h-1/3 flex items-start text-center bg-gray-800 text-white p-4">
+      <footer className="h-1/3 flex items-start bg-gray-800 text-white p-4">
         
         <div className="w-1/3">
-          <p>Sedes</p>
+
+          <p className="text-2xl text-center font-bold text-secFormColor my-2">Dónde estamos:</p>
+
+          <p className="font-bold text-secFormColor">Dirección:</p>
+          <p className="mb-3">Cra. 8 #7 - 26, La Candelaria, Bogotá, Cundinamarca</p>
+
+          <p className="font-bold text-secFormColor">Teléfonos:</p>
+          <p ><span className="font-bold">Venta de vehículos: </span>
+            3002604549
+          </p>
+          <p><span className="font-bold">Servicio / Repuestos: </span>            
+            3002604549
+          </p>
+          <p ><span className="font-bold">Call Center: </span>
+            3002604549
+          </p>
+
+          <p className="font-bold text-secFormColor mt-3">Horarios de atención:</p>
+          <p className="mb-3">08:00 a. m. - 04:00 p. m.</p>
+
         </div>
 
-        <div className="w-1/3">
-          <p>Conctáctenos</p>
+
+
+        <div className="w-1/3 space-y-2">
+
+          <p className="text-2xl text-center font-bold text-secFormColor my-2">Canales de atención:</p>
+          
+          <a href="https://www.google.com/?hl=es" target="_blank" rel="noopener noreferrer" className="block text- text-center">Asesoría en linea</a>
+          <a href="https://www.google.com/?hl=es" target="_blank" rel="noopener noreferrer" className="block text-white text-center">Chatbot</a>
+          <a href="https://www.google.com/?hl=es" target="_blank" rel="noopener noreferrer" className="block text-white text-center">PQRSD</a>
+          <p className="text-white text-center"> Linea de atención nacional </p>
+          <p className="text-white text-center" style={{ marginTop: '0px' }}>01 8000 423 818 </p>
+
         </div>
 
-        <div className="w-1/3">
-          <p>Redes Sociales →</p>
+
+
+        <div className="w-1/3 h-full">
+          
+          <p className="text-2xl text-center font-bold text-secFormColor my-2">Redes Sociales</p>
+          
+          <div className="flex justify-center space-x-4 mt-6">
+            
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFacebook} className="text-blue-600 text-3xl hover:text-blue-800 h-12 w-12" />
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} className="text-pink-500 text-3xl hover:text-pink-700 h-12 w-12" />
+            </a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faYoutube} className="text-red-600 text-3xl hover:text-red-800 h-12 w-12" />
+            </a>
+            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faWhatsapp} className="text-green-600 text-3xl hover:text-green-800 h-12 w-12" />
+            </a>
+          </div>
+
         </div>
       </footer>
+
+      <p className="font-bold font-serif text-end bg-gray-800 text-white pb-2 pr-4"> © 2024 Todos los derechos reservados </p>
+
 
     </div>
   );
