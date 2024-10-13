@@ -21,13 +21,18 @@ const PrizeCode = ({ closeModal, code }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="font-serif bg-white p-8 rounded-lg">
+
         <h3 className="text-indigo-500 font-bold text-4xl text-center">
-          Código de <span className="text-secFormColor">Sorteo</span>
+          !Registro Completado!
         </h3>
 
         <div className="flex items-center justify-center">
-          <div className="w-4/5 border-b border-blue-700 my-2"></div>
+          <div className="w-4/5 border-b border-gray-700 my-2"></div>
         </div>
+
+        <h3 className="text-secFormColor font-bold text-4xl text-center">
+          Código de <span className="text-secFormColor">Sorteo</span>
+        </h3>
 
         <div className="flex items-center justify-center mt-2">
           <FontAwesomeIcon
@@ -38,7 +43,7 @@ const PrizeCode = ({ closeModal, code }) => {
         </div>
 
         <p className="max-w-lg text-base text-justify ">
-          Guarda tu código con el que podrás participar en el sorteo del carro
+         {fullname} Guarda tu código con el que podrás participar en el sorteo del carro
           que se realizará en las proximas semanas.
         </p>
 

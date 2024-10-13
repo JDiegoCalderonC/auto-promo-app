@@ -45,6 +45,21 @@ export default function Home() {
     setCode(codigoCorto);
   };
 
+  const clearForm = () => {
+    setFormData({
+      nombre: "",
+      apellido: "",
+      cedula: "",
+      departamento: "",
+      ciudad: "",
+      celular: "",
+      email: "",
+      autorizado: false,
+    });
+  };
+
+
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -101,23 +116,17 @@ export default function Home() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormData({
-      nombre: "",
-      apellido: "",
-      cedula: "",
-      departamento: "",
-      ciudad: "",
-      celular: "",
-      email: "",
-      autorizado: false,
-    });
+    clearForm();
 
     generateCode();
+
     OpenModal();
   };
 
@@ -289,7 +298,7 @@ export default function Home() {
             />
             <label className="max-w-3xl text-white mt-2">
               Autorizo el tratamiento de mis datos de acuerdo con la finalidad
-              establecida en la
+              establecida en la {``}
               <a
                 href="https://www.minambiente.gov.co/politica-de-proteccion-de-datos-personales/"
                 target="_blank"
@@ -319,7 +328,7 @@ export default function Home() {
       </p>
 
       {isModalOpen && (
-        <PrizeCode closeModal={() => setIsModalOpen(false)} code={code} />
+        <PrizeCode closeModal={() => setIsModalOpen(false)} code={code}/>
       )}
     </div>
   );

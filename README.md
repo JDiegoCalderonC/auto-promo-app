@@ -35,6 +35,6 @@ La aplicación estará disponible en http://localhost:3000.
 - **Iconos:** Los iconos provienen de **FontAwesome**.
 - **Carrusel de Imágenes:** El número de elementos en el carrusel de imágenes se ajusta dinámicamente según el ancho de la pantalla.
 
-## Autores
+## Autor
 
 **Juan Diego Calderón Carrillo**
