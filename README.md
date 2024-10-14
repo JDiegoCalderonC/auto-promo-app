@@ -2,6 +2,8 @@
 
 Este proyecto es una aplicación Next.js para una promoción de una compañía de automóviles. Los usuarios pueden registrarse en una Landing Page y recibir un código alfanumérico para participar en un sorteo.
 
+https://auto-promo-app.vercel.app/
+
 ## Requisitos
 
 - Docker
