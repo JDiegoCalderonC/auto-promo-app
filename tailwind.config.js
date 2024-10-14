@@ -10,6 +10,16 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        formColor: 'rgb(27, 49, 73)',
+        secFormColor: 'rgb(242, 130, 92)',
+      },
+      height: {
+        '1/10': '10%',
+      },
+      screens: {
+        '1.5xl': '1400px',
+        '3xl': '1920px',
+        '4xl': '2500px',
       },
     },
   },
