@@ -1,4 +1,5 @@
 import React from "react";
+import { useMedia } from 'use-media'; // Importa el hook useMedia para manejar media queries
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -13,6 +14,9 @@ import {
  * @returns {JSX.Element} - El pie de página con información de contacto y enlaces a redes sociales.
  */
 const Footer = () => {
+
+    const isVeryShortScreen = useMedia({ maxWidth: '600px' });
+
   return (
     <footer className="sm:h-1/3 md:h-1/3 lg:h-1/3 xl:h-1/3 2xl:h-1/3 3xl:h-1/3 4xl:h-96 flex items-start bg-gray-800 text-white pt-4">
       {/* Sección de información de ubicación y contacto */}
@@ -97,7 +101,7 @@ const Footer = () => {
           >
             <FontAwesomeIcon
               icon={faFacebook}
-              className="text-blue-600 text-3xl hover:text-blue-800 h-12 w-12"
+              className={`text-blue-600 text-3xl hover:text-blue-800 ${isVeryShortScreen ? "h-6 w-6" : "h-12 w-12"} `}
             />
           </a>
           <a
@@ -107,7 +111,7 @@ const Footer = () => {
           >
             <FontAwesomeIcon
               icon={faInstagram}
-              className="text-pink-500 text-3xl hover:text-pink-700 h-12 w-12"
+              className={`text-pink-500 text-3xl hover:text-pink-700 ${isVeryShortScreen ? "h-6 w-6" : "h-12 w-12"} `}
             />
           </a>
           <a
@@ -117,7 +121,7 @@ const Footer = () => {
           >
             <FontAwesomeIcon
               icon={faYoutube}
-              className="text-red-600 text-3xl hover:text-red-800 h-12 w-12"
+              className={`text-red-600 text-3xl hover:text-red-800 ${isVeryShortScreen ? "h-6 w-6" : "h-12 w-12"} `}
             />
           </a>
           <a
@@ -127,7 +131,7 @@ const Footer = () => {
           >
             <FontAwesomeIcon
               icon={faWhatsapp}
-              className="text-green-600 text-3xl hover:text-green-800 h-12 w-12"
+              className={`text-green-600 text-3xl hover:text-green-800 ${isVeryShortScreen ? "h-6 w-6" : "h-12 w-12"} `}
             />
           </a>
         </div>
