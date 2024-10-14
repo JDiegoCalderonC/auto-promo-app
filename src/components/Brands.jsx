@@ -24,6 +24,7 @@ const Brands = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Media queries para diferentes tamaños de pantalla
+  const isVeryShortScreen = useMedia({ maxWidth: '600px' });
   const isShortScreen = useMedia({ maxWidth: '960px' });
   const isSmallScreen = useMedia({ maxWidth: '1140px' });
   const isMediumScreen = useMedia({ maxWidth: '1280px' });
@@ -67,7 +68,7 @@ const Brands = () => {
       <div className="flex justify-center space-x-10">
         {marcasDeCarros
           .concat(marcasDeCarros) // Duplica el array para el comportamiento cíclico
-          .slice(currentIndex, currentIndex + (isShortScreen ? 3 : isSmallScreen ? 5 : isMediumScreen ? 6 : isLargeScreen ? 7 : isBigScreen ? 8 : 10)) // Muestra marcas según el tamaño de pantalla
+          .slice(currentIndex, currentIndex + (isVeryShortScreen ? 2 : isShortScreen ? 3 : isSmallScreen ? 5 : isMediumScreen ? 6 : isLargeScreen ? 7 : isBigScreen ? 8 : 10)) // Muestra marcas según el tamaño de pantalla
           .map((marca, index) => (
             <div
               key={index}

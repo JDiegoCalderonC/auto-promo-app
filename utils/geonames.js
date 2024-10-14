@@ -13,7 +13,7 @@ export const getDepartments = async () => {
   try {
     // Realiza la solicitud a la API para obtener los departamentos
     const departmentsResponse = await axios.get(
-      `http://api.geonames.org/childrenJSON?geonameId=3686110&username=${GEO_NAMES_USERNAME}`
+      `https://api.geonames.org/childrenJSON?geonameId=3686110&username=${GEO_NAMES_USERNAME}`
     );
     
     // Mapea la respuesta para extraer el nombre y el ID de cada departamento
@@ -41,7 +41,7 @@ export const getCities = async (id) => {
   try {
     // Realiza la solicitud a la API para obtener las ciudades del departamento especificado
     const citiesResponse = await axios.get(
-      `http://api.geonames.org/childrenJSON?geonameId=${id}&username=${GEO_NAMES_USERNAME}`
+      `https://api.geonames.org/childrenJSON?geonameId=${id}&username=${GEO_NAMES_USERNAME}`
     );
     
     // Mapea la respuesta para extraer el nombre y el ID de cada ciudad
